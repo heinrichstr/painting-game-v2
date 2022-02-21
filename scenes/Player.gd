@@ -1,20 +1,27 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
+export var speed = 200
+var path : = PoolVector2Array()
 
 var target = Vector2()
 var velocity = Vector2()
 
 func _ready():
-	print(target)
+	$AnimatedSprite.play("default") 
 
-func _unhandled_input(event):
-	if event.is_action_pressed("user_click"):
-		print("click")
-		target = get_global_mouse_position()
-
-func _physics_process(delta):
-	velocity = position.direction_to(target) * speed
-	# look_at(target)
-	if position.distance_to(target) > 5:
-		velocity = move_and_slide(velocity)
+func _process(delta):
+	# Calculate the movement distance for this frame
+	var distance_to_walk = speed * delta
+	
+	# Move the player along the path until he has run out of movement or the path ends.
+	while distance_to_walk > 0 and path.size() > 0:
+		var distance_to_next_point = position.distance_to(path[0])
+		if distance_to_walk <= distance_to_next_point:
+			# The player does not have enough movement left to get to the next point.
+			position += position.direction_to(path[0]) * distance_to_walk
+		else:
+			# The player get to the next point
+			position = path[0]
+			path.remove(0)
+		# Update the distance to walk
+		distance_to_walk -= distance_to_next_point

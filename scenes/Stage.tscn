@@ -1,14 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/stages/devStage.png" type="Texture" id=1]
+[ext_resource path="res://assets/stages/devStageNav.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Sprite.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Stage.gd" type="Script" id=4]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1648.66, 248.164, 1801.56, 314.235, 1710.95, 501.122, 1537.28, 572.856, 146.01, 495.459, 98.8162, 268.929, 176.214, 165.103, 393.305, 338.776, 893.558, 999.487, 49.7347, 1003.26, 38.4083, 916.426, 74.2755, 895.661, 1465.55, 814.488, 910.547, 225.511, 1293.76, 48.0625, 1473.1, 95.2562 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 8, 11, 4 ), PoolIntArray( 12, 8, 7, 13, 3 ), PoolIntArray( 3, 13, 14, 15, 0 ) ]
+outlines = [ PoolVector2Array( 176.214, 165.103, 393.305, 338.776, 910.547, 225.511, 1293.76, 48.0625, 1473.1, 95.2562, 1648.66, 248.164, 1801.56, 314.235, 1710.95, 501.122, 1537.28, 572.856, 1465.55, 814.488, 893.558, 999.487, 49.7347, 1003.26, 38.4083, 916.426, 74.2755, 895.661, 146.01, 495.459, 98.8162, 268.929 ) ]
 
 [node name="Stage" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 904.231, 541.783 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
