@@ -1,1 +1,17 @@
 Currently working on building the inventory bar at the bottom of the screen (see notebook)
+
+TODO:
+
+-Inventory Bar
+	-UI components
+	-object mixing
+
+-NPC Dialog System
+	-NPC dialog 'cutscene'
+	-Dialog data format
+
+-object inteactable system
+	-click menu
+	-contextual actions
+
+-hinting system
