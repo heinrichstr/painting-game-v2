@@ -1,12 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/jar01.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Stage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Master.gd" type="Script" id=3]
 [ext_resource path="res://assets/StyleBox/inventory_btn_style_normal.tres" type="StyleBox" id=4]
 [ext_resource path="res://assets/StyleBox/inventory_btn_style_hover.tres" type="StyleBox" id=5]
-[ext_resource path="res://assets/fonts/dancing_script.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/fonts/roboto_slab.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scenes/Button.gd" type="Script" id=7]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment(){
+  COLOR = vec4(0.4, 0.6, 0.9, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -22,13 +34,13 @@ script = ExtResource( 3 )
 [node name="Stage" parent="." instance=ExtResource( 2 )]
 
 [node name="InventoryUI" type="MarginContainer" parent="."]
+material = SubResource( 4 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.82849
-margin_top = 879.641
-margin_right = 1919.83
-margin_bottom = 1077.64
+margin_top = 940.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -40,41 +52,232 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1897.0
-margin_bottom = 186.0
+margin_right = 1900.0
+margin_bottom = 224.0
+alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/HBoxContainer"]
-margin_bottom = 166.0
-
-[node name="Control" type="Control" parent="InventoryUI/HBoxContainer/VBoxContainer"]
-
-[node name="Label" type="Label" parent="InventoryUI/HBoxContainer/VBoxContainer/Control"]
-visible = false
-margin_top = 8.0
-margin_right = 210.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 6 )
-text = "Item Name"
-align = 1
+margin_left = 582.0
+margin_right = 722.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 140, 100 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
-[node name="Button" type="Button" parent="InventoryUI/HBoxContainer/VBoxContainer/Control"]
-margin_right = 100.0
+[node name="Control" type="MarginContainer" parent="InventoryUI/HBoxContainer/VBoxContainer"]
+margin_right = 140.0
 margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Button" type="Button" parent="InventoryUI/HBoxContainer/VBoxContainer/Control"]
+margin_left = 20.0
+margin_right = 120.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
 custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 6 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "50		"
 }
+buttonString = "PILL BOTTLE"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="InventoryUI/HBoxContainer/VBoxContainer/Control"]
-position = Vector2( 49.9859, 49.1888 )
+position = Vector2( 70, 50 )
+scale = Vector2( 0.232285, 0.353502 )
+frames = SubResource( 1 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="InventoryUI/HBoxContainer"]
+margin_left = 726.0
+margin_right = 866.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 140, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Control" type="MarginContainer" parent="InventoryUI/HBoxContainer/VBoxContainer2"]
+margin_right = 140.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Button" type="Button" parent="InventoryUI/HBoxContainer/VBoxContainer2/Control"]
+margin_left = 20.0
+margin_right = 120.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "50		"
+}
+buttonString = "PILL BOTTLE"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="InventoryUI/HBoxContainer/VBoxContainer2/Control"]
+position = Vector2( 70, 50 )
+scale = Vector2( 0.232285, 0.353502 )
+frames = SubResource( 1 )
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="InventoryUI/HBoxContainer"]
+margin_left = 870.0
+margin_right = 1010.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 140, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Control" type="MarginContainer" parent="InventoryUI/HBoxContainer/VBoxContainer3"]
+margin_right = 140.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Button" type="Button" parent="InventoryUI/HBoxContainer/VBoxContainer3/Control"]
+margin_left = 20.0
+margin_right = 120.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "50		"
+}
+buttonString = "PILL BOTTLE"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="InventoryUI/HBoxContainer/VBoxContainer3/Control"]
+position = Vector2( 70, 50 )
+scale = Vector2( 0.232285, 0.353502 )
+frames = SubResource( 1 )
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="InventoryUI/HBoxContainer"]
+margin_left = 1014.0
+margin_right = 1154.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 140, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Control" type="MarginContainer" parent="InventoryUI/HBoxContainer/VBoxContainer4"]
+margin_right = 140.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Button" type="Button" parent="InventoryUI/HBoxContainer/VBoxContainer4/Control"]
+margin_left = 20.0
+margin_right = 120.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "50		"
+}
+buttonString = "PILL BOTTLE"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="InventoryUI/HBoxContainer/VBoxContainer4/Control"]
+position = Vector2( 70, 50 )
+scale = Vector2( 0.232285, 0.353502 )
+frames = SubResource( 1 )
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="InventoryUI/HBoxContainer"]
+margin_left = 1158.0
+margin_right = 1298.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 140, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Control" type="MarginContainer" parent="InventoryUI/HBoxContainer/VBoxContainer5"]
+margin_right = 140.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Button" type="Button" parent="InventoryUI/HBoxContainer/VBoxContainer5/Control"]
+margin_left = 20.0
+margin_right = 120.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "50		"
+}
+buttonString = "PILL BOTTLE"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="InventoryUI/HBoxContainer/VBoxContainer5/Control"]
+position = Vector2( 70, 50 )
 scale = Vector2( 0.232285, 0.353502 )
 frames = SubResource( 1 )
 
 [connection signal="mouse_entered" from="InventoryUI/HBoxContainer/VBoxContainer/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer/Control/Button" method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="InventoryUI/HBoxContainer/VBoxContainer/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer/Control/Button" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="InventoryUI/HBoxContainer/VBoxContainer/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer/Control/Button" method="_on_Button_pressed"]
+[connection signal="mouse_entered" from="InventoryUI/HBoxContainer/VBoxContainer2/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer2/Control/Button" method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="InventoryUI/HBoxContainer/VBoxContainer2/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer2/Control/Button" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="InventoryUI/HBoxContainer/VBoxContainer2/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer2/Control/Button" method="_on_Button_pressed"]
+[connection signal="mouse_entered" from="InventoryUI/HBoxContainer/VBoxContainer3/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer3/Control/Button" method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="InventoryUI/HBoxContainer/VBoxContainer3/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer3/Control/Button" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="InventoryUI/HBoxContainer/VBoxContainer3/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer3/Control/Button" method="_on_Button_pressed"]
+[connection signal="mouse_entered" from="InventoryUI/HBoxContainer/VBoxContainer4/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer4/Control/Button" method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="InventoryUI/HBoxContainer/VBoxContainer4/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer4/Control/Button" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="InventoryUI/HBoxContainer/VBoxContainer4/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer4/Control/Button" method="_on_Button_pressed"]
+[connection signal="mouse_entered" from="InventoryUI/HBoxContainer/VBoxContainer5/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer5/Control/Button" method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="InventoryUI/HBoxContainer/VBoxContainer5/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer5/Control/Button" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="InventoryUI/HBoxContainer/VBoxContainer5/Control/Button" to="InventoryUI/HBoxContainer/VBoxContainer5/Control/Button" method="_on_Button_pressed"]

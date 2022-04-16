@@ -4,6 +4,8 @@ TODO:
 
 -Inventory Bar
 	-UI components
+		-add to button code to advance sprite
+		-export myString in button script
 	-object mixing
 
 -NPC Dialog System
